@@ -8,15 +8,15 @@ struct LoginView: View {
     @State var email = ""
     @State var password = ""
     @State var loginStatusMessage = ""
+    @State var shouldShowImagePicker = false
+    @State var image: UIImage?
 
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 16) {
 
-                    Picker(
-                        selection: $isLoginMode
-                    ) {
+                    Picker(selection: $isLoginMode) {
                         Text("Login")
                             .tag(true)
                         Text("Create Account")
@@ -28,11 +28,24 @@ struct LoginView: View {
 
                     if !isLoginMode {
                         Button {
-
+                            shouldShowImagePicker.toggle()
                         } label: {
-                            Image(systemName: "person.fill")
-                                .font(.system(size: 64))
-                                .padding()
+                            VStack {
+                                if let image = self.image {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 128, height: 128)
+                                        .cornerRadius(64)
+                                } else {
+                                    Image(systemName: "person.fill")
+                                        .font(.system(size: 64))
+                                        .padding()
+                                        .foregroundColor(Color(.label))
+                                }
+                            }
+                            .overlay(RoundedRectangle(cornerRadius: 64)
+                                .stroke(Color.black, lineWidth: 3))
                         }
                     }
                     Group {
@@ -68,7 +81,14 @@ struct LoginView: View {
             .background(Color(.init(white: 0, alpha: 0.05))
                 .ignoresSafeArea())
         }
+        .fullScreenCover(
+            isPresented: $shouldShowImagePicker,
+            content: {
+                ImagePicker(image: $image)
+            }
+        )
     }
+
     private func handleAction() {
         if isLoginMode {
             loginUser()
@@ -105,8 +125,33 @@ struct LoginView: View {
                 }
                 debugPrint("Successfully created user: \(result?.user.uid ?? "")")
                 self.loginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
+
+                self.persistImageToStorage()
             }
         )
+    }
+
+    private func persistImageToStorage() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+
+        let reference = FirebaseManager.shared.storage.reference(withPath: uid)
+
+        guard let imageData = self.image?.jpegData(compressionQuality: 0.5) else { return }
+
+        reference.putData(imageData) { metadata, error in
+            if let error = error {
+                self.loginStatusMessage = "Failed to push image to Storage: \(error)"
+                return
+            }
+
+            reference.downloadURL { url, error in
+                if let error = error {
+                    self.loginStatusMessage = "Failed to retrieve downloadURL: \(error)"
+                    return
+                }
+                self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
+            }
+        }
     }
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE3964BD29631ACE00536D22 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3964BC29631ACE00536D22 /* FirebaseManager.swift */; };
+		CE3964BF2963202600536D22 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3964BE2963202600536D22 /* ImagePicker.swift */; };
 		CEB63F372962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB63F362962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift */; };
 		CEB63F392962E92C00D28C4C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB63F382962E92C00D28C4C /* LoginView.swift */; };
 		CEB63F3B2962E92E00D28C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB63F3A2962E92E00D28C4C /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		CE3964BC29631ACE00536D22 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		CE3964BE2963202600536D22 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CEB63F332962E92C00D28C4C /* SwiftUI-ChatWithFirestore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-ChatWithFirestore.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB63F362962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ChatWithFirestoreApp.swift; sourceTree = "<group>"; };
 		CEB63F382962E92C00D28C4C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				CEB63F362962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift */,
 				CEB63F382962E92C00D28C4C /* LoginView.swift */,
+				CE3964BE2963202600536D22 /* ImagePicker.swift */,
 				CE3964BC29631ACE00536D22 /* FirebaseManager.swift */,
 				CEB63F3A2962E92E00D28C4C /* Assets.xcassets */,
 				CEB63F4C2963043E00D28C4C /* GoogleService-Info.plist */,
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE3964BD29631ACE00536D22 /* FirebaseManager.swift in Sources */,
+				CE3964BF2963202600536D22 /* ImagePicker.swift in Sources */,
 				CEB63F392962E92C00D28C4C /* LoginView.swift in Sources */,
 				CEB63F372962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift in Sources */,
 			);
