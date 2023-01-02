@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CEB63F372962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB63F362962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift */; };
-		CEB63F392962E92C00D28C4C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB63F382962E92C00D28C4C /* ContentView.swift */; };
+		CEB63F392962E92C00D28C4C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB63F382962E92C00D28C4C /* LoginView.swift */; };
 		CEB63F3B2962E92E00D28C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB63F3A2962E92E00D28C4C /* Assets.xcassets */; };
 		CEB63F3E2962E92E00D28C4C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB63F3D2962E92E00D28C4C /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		CEB63F332962E92C00D28C4C /* SwiftUI-ChatWithFirestore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-ChatWithFirestore.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB63F362962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_ChatWithFirestoreApp.swift; sourceTree = "<group>"; };
-		CEB63F382962E92C00D28C4C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CEB63F382962E92C00D28C4C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CEB63F3A2962E92E00D28C4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEB63F3D2962E92E00D28C4C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB63F362962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift */,
-				CEB63F382962E92C00D28C4C /* ContentView.swift */,
+				CEB63F382962E92C00D28C4C /* LoginView.swift */,
 				CEB63F3A2962E92E00D28C4C /* Assets.xcassets */,
 				CEB63F3C2962E92E00D28C4C /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEB63F392962E92C00D28C4C /* ContentView.swift in Sources */,
+				CEB63F392962E92C00D28C4C /* LoginView.swift in Sources */,
 				CEB63F372962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
