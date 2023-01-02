@@ -7,6 +7,7 @@ struct LoginView: View {
     @State var isLoginMode = false
     @State var email = ""
     @State var password = ""
+    @State var loginStatusMessage = ""
 
     var body: some View {
         NavigationView {
@@ -57,6 +58,9 @@ struct LoginView: View {
                         }
                         .background(Color.blue)
                     }
+
+                    Text(self.loginStatusMessage)
+                        .foregroundColor(.red)
                 }
                 .padding()
             }
@@ -67,10 +71,42 @@ struct LoginView: View {
     }
     private func handleAction() {
         if isLoginMode {
-            debugPrint("Should log into Firebase with existing credentials")
+            loginUser()
         } else {
-            debugPrint("Register a new account inside Firebase Auth and then store image in Storage somehow...")
+            createNewAccount()
         }
+    }
+
+    private func loginUser() {
+        FirebaseManager.shared.auth.signIn(
+            withEmail: email,
+            password: password,
+            completion: { result, error in
+                if let error = error {
+                    debugPrint("Failed to create user:", error)
+                    self.loginStatusMessage = "Failed to login user: \(error)"
+                    return
+                }
+                debugPrint("Successfully logged in as user: \(result?.user.uid ?? "")")
+                self.loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
+            }
+            )
+    }
+
+    private func createNewAccount() {
+        FirebaseManager.shared.auth.createUser(
+            withEmail: email,
+            password: password,
+            completion: { result, error in
+                if let error = error {
+                    debugPrint("Failed to create user:", error)
+                    self.loginStatusMessage = "Failed to create user: \(error)"
+                    return
+                }
+                debugPrint("Successfully created user: \(result?.user.uid ?? "")")
+                self.loginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
+            }
+        )
     }
 }
 
