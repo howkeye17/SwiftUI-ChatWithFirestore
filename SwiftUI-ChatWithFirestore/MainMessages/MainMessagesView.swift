@@ -1,9 +1,11 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MainMessagesView: View {
 
+    @ObservedObject private var viewModel = MainMessagesViewModel()
     @State var shouldShowLogOutoptions = false
 
     var body: some View {
@@ -50,11 +52,24 @@ struct MainMessagesView: View {
 
     private var customNavigationBar: some View {
         HStack(spacing: 16) {
-            Image(systemName: "person.fill")
-                .font(.system(size: 34, weight: .heavy))
 
+            WebImage(
+                url: URL(
+                    string: viewModel.chatUser?.imageProfileURL ?? ""))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 50, height: 50)
+                .clipped()
+                .cornerRadius(25)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 25)
+                    .stroke(Color(.label), lineWidth: 1))
+                .shadow(radius: 5)
+                .padding(.leading)
+            let userName = viewModel.chatUser?.email
+                .replacingOccurrences(of: "@gmail.com", with: "") ?? ""
             VStack(alignment: .leading, spacing: 4) {
-                Text("USERNAME")
+                Text(userName)
                     .font(.system(size: 24, weight: .bold))
                 HStack {
                     Circle()
