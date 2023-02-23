@@ -2,7 +2,7 @@
 
 import Foundation
 
-class MainMessagesViewModel: ObservableObject {
+final class MainMessagesViewModel: ObservableObject {
 
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?

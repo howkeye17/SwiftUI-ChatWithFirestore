@@ -7,6 +7,7 @@ struct MainMessagesView: View {
 
     @ObservedObject private var viewModel = MainMessagesViewModel()
     @State var shouldShowLogOutoptions = false
+    @State var shouldShowNewMessageScreen = false
 
     var body: some View {
         NavigationView {
@@ -14,7 +15,9 @@ struct MainMessagesView: View {
                 customNavigationBar
                 messagesView
                     .overlay (
-                        newMessageButton, alignment: .bottom)
+                        newMessageButton,
+                        alignment: .bottom
+                    )
                     .toolbar(.hidden)
             }
         }
@@ -118,7 +121,7 @@ struct MainMessagesView: View {
 
     private var newMessageButton: some View {
         Button {
-            // action
+            shouldShowNewMessageScreen.toggle()
         } label: {
             HStack {
                 Spacer()
@@ -132,6 +135,10 @@ struct MainMessagesView: View {
             .cornerRadius(32)
             .padding(.horizontal)
         }
+        .fullScreenCover(
+            isPresented: $shouldShowNewMessageScreen) {
+                CreateNewMessageView()
+            }
     }
 }
 
