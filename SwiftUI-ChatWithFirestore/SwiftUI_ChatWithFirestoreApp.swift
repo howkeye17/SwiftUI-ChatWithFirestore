@@ -6,7 +6,7 @@ import SwiftUI
 struct SwiftUI_ChatWithFirestoreApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            MainMessagesView()
         }
     }
 }

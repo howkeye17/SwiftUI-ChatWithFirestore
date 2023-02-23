@@ -100,7 +100,7 @@
 			children = (
 				CE2343D6296567B1006E981E /* Models */,
 				CEB63F362962E92C00D28C4C /* SwiftUI_ChatWithFirestoreApp.swift */,
-				CEB63F382962E92C00D28C4C /* LoginView.swift */,
+				CEBE8EB429A78ECE00568283 /* LoginScren */,
 				CE78092F2964297800DC6110 /* MainMessages */,
 				CE1AB89A2964711100DD99D2 /* Helpers */,
 				CEB63F3A2962E92E00D28C4C /* Assets.xcassets */,
@@ -123,6 +123,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEBE8EB429A78ECE00568283 /* LoginScren */ = {
+			isa = PBXGroup;
+			children = (
+				CEB63F382962E92C00D28C4C /* LoginView.swift */,
+			);
+			path = LoginScren;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

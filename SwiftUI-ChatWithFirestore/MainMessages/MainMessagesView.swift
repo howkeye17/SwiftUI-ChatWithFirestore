@@ -56,16 +56,16 @@ struct MainMessagesView: View {
             WebImage(
                 url: URL(
                     string: viewModel.chatUser?.imageProfileURL ?? ""))
-                .resizable()
-                .scaledToFill()
-                .frame(width: 50, height: 50)
-                .clipped()
-                .cornerRadius(25)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 25)
+            .resizable()
+            .scaledToFill()
+            .frame(width: 50, height: 50)
+            .clipped()
+            .cornerRadius(25)
+            .overlay(
+                RoundedRectangle(cornerRadius: 25)
                     .stroke(Color(.label), lineWidth: 1))
-                .shadow(radius: 5)
-                .padding(.leading)
+            .shadow(radius: 5)
+            .padding(.leading)
             let userName = viewModel.chatUser?.email
                 .replacingOccurrences(of: "@gmail.com", with: "") ?? ""
             VStack(alignment: .leading, spacing: 4) {
@@ -97,11 +97,22 @@ struct MainMessagesView: View {
                         .destructive(
                             Text("Log Out"),
                             action: {
-                                // Log out
+                                viewModel.handleSignOut()
                             }),
                         .cancel()
                     ])
             }
+            .fullScreenCover(
+                isPresented:  $viewModel.isUserCurrentlyLoggedOut,
+                content: {
+                    LoginView(
+                        didCompleteLoginProcess: {
+                            self.viewModel.isUserCurrentlyLoggedOut = false
+                            self.viewModel.handleSignIn()
+                        }
+                    )
+                }
+            )
         }
     }
 

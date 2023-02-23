@@ -6,6 +6,7 @@ class MainMessagesViewModel: ObservableObject {
 
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
+    @Published var isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
 
     init() {
         fetchCurrentUser()
@@ -29,12 +30,16 @@ class MainMessagesViewModel: ObservableObject {
                     return
                 }
 
-                guard  let uid = data["uid"] as? String,
-                       let email = data["email"] as? String,
-                       let imageProfileURL = data["imageProfileURL"] as? String
-                else { return }
-
-                self.chatUser = ChatUser(uid: uid, email: email, imageProfileURL: imageProfileURL)
+                self.chatUser = ChatUser(from: data)
         }
+    }
+
+    func handleSignOut() {
+        isUserCurrentlyLoggedOut.toggle()
+        try? FirebaseManager.shared.auth.signOut()
+    }
+
+    func handleSignIn() {
+        fetchCurrentUser()
     }
 }
