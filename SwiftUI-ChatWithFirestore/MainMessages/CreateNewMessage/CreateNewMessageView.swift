@@ -5,6 +5,8 @@ import SDWebImageSwiftUI
 
 struct CreateNewMessageView: View {
 
+    let didSelectNewUser: (ChatUser) -> Void
+
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel = CreateNewMessageViewModel()
 
@@ -16,6 +18,7 @@ struct CreateNewMessageView: View {
                 ForEach(viewModel.users) { user in
                     Button {
                         dismiss()
+                        didSelectNewUser(user)
                     } label: {
                         HStack {
                             WebImage(url: URL(string: user.imageProfileURL))
@@ -60,6 +63,6 @@ struct CreateNewMessageView: View {
 
 struct CreateNewMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateNewMessageView()
+        CreateNewMessageView(didSelectNewUser: {_ in })
     }
 }

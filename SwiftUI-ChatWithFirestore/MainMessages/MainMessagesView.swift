@@ -8,18 +8,29 @@ struct MainMessagesView: View {
     @ObservedObject private var viewModel = MainMessagesViewModel()
     @State var shouldShowLogOutoptions = false
     @State var shouldShowNewMessageScreen = false
+    @State var shouldNavigateToChatLogView = false
+    @State var chatUser: ChatUser?
 
     var body: some View {
         NavigationView {
             VStack {
                 customNavigationBar
                 messagesView
-                    .overlay (
-                        newMessageButton,
-                        alignment: .bottom
-                    )
-                    .toolbar(.hidden)
+
+                NavigationLink(
+                    isActive: $shouldNavigateToChatLogView,
+                    destination: {
+                        ChatLogView(chatUser: self.chatUser)
+                    }, label: {
+                        Text("")
+                    }
+                )
             }
+            .overlay (
+                newMessageButton,
+                alignment: .bottom
+            )
+            .toolbar(.hidden)
         }
     }
 
@@ -27,24 +38,27 @@ struct MainMessagesView: View {
         ScrollView {
             ForEach(0..<10, id: \.self) { num in
                 VStack {
-                    HStack(spacing: 16) {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 32))
-                            .padding(8)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 44)
-                                .stroke(Color(.label), lineWidth: 1))
-                        VStack(alignment: .leading) {
-                            Text("User name")
-                                .font(.system(size: 16, weight: .bold))
-                            Text("Message sent to user")
-                                .font(.system(size: 14))
-                                .foregroundColor(Color(.lightGray))
+                    NavigationLink {
+                        Text("Destination")
+                    } label: {
+                        HStack(spacing: 16) {
+                            Image(systemName: "person.fill")
+                                .font(.system(size: 32))
+                                .padding(8)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 44)
+                                        .stroke(Color(.label), lineWidth: 1))
+                            VStack(alignment: .leading) {
+                                Text("User name")
+                                    .font(.system(size: 16, weight: .bold))
+                                Text("Message sent to user")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(Color(.lightGray))
+                            }
+                            Spacer()
+                            Text("22d")
+                                .font(.system(size: 14, weight: .semibold))
                         }
-                        Spacer()
-
-                        Text("22d")
-                            .font(.system(size: 14, weight: .semibold))
                     }
                     Divider()
                         .padding(.vertical, 8)
@@ -137,8 +151,27 @@ struct MainMessagesView: View {
         }
         .fullScreenCover(
             isPresented: $shouldShowNewMessageScreen) {
-                CreateNewMessageView()
+                CreateNewMessageView(
+                    didSelectNewUser: { chatUser in
+                        self.shouldNavigateToChatLogView.toggle()
+                        self.chatUser = chatUser
+                    }
+                )
             }
+    }
+}
+
+struct ChatLogView: View {
+
+    let chatUser: ChatUser?
+
+    var body: some View {
+        ScrollView {
+            ForEach(0..<10) { num in
+                Text("Fake Data")
+            }
+        }
+        .navigationTitle(chatUser?.email ?? "")
     }
 }
 
